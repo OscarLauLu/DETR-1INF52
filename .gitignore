@@ -1,0 +1,13 @@
+# datos pesados (se regeneran con el notebook 01)
+data/train.json
+data/val2017/
+data/annotations/
+data/*.zip
+*.zip
+# checkpoints
+*.pt
+*.pth
+# entorno
+__pycache__/
+.ipynb_checkpoints/
+.venv/

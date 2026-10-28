@@ -1,0 +1,4 @@
+N,% imágenes con n > N,techo de recall (dataset)
+100,19.3,89.0
+300,0.5,99.9
+500,0.0,100.0
