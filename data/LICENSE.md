@@ -1,0 +1,1 @@
+Las anotaciones de esta carpeta derivan de VisDrone-DET (Zhu et al., IEEE TPAMI 2021), en la copia de Kaggle `banuprasadb/visdrone-dataset` (https://www.kaggle.com/datasets/banuprasadb/visdrone-dataset), y se distribuyen bajo CC BY-NC-SA 3.0 IGO: https://creativecommons.org/licenses/by-nc-sa/3.0/igo/
