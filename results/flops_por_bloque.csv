@@ -1,0 +1,7 @@
+bloque,GFLOPs,%
+model.backbone,164.779604864,85.8
+model.input_projection,1.056964608,0.6
+model.encoder,22.097166336,11.5
+model.decoder,3.996352512,2.1
+class_labels_classifier,0.0047104,0.0
+bbox_predictor,0.0264192,0.0

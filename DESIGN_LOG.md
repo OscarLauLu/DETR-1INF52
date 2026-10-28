@@ -23,10 +23,11 @@ Regla del equipo: las hipótesis se escriben y se **commitean antes** de ejecuta
 | D11 | 2026-10-21 | Zero-shot COCO → VisDrone solo en 6 clases con equivalente: person→pedestrian, bicycle, car, motorcycle→motor, bus, truck | van, tricycle, awning-tricycle y people no existen en COCO; evaluarlas penalizaría al modelo por clases que no conoce. Las 6 clases mapeadas cubren el 77,6 % de las cajas de val; people (13,2 %) es la clase sin equivalente con más cajas | Evaluar las 10 clases | Mapeo propuesto por Claude; revisar ambigüedad person/people |
 | D12 | 2026-10-21 | Grupos de densidad por terciles de objetos/imagen (low/medium/high) + grupo `gt100` (n > 100) | Los terciles dan grupos balanceados; `gt100` aísla justo las imágenes donde N=100 tiene techo activo | Cortes fijos arbitrarios | |
 | D13 | 2026-10-21 | Entrenamiento: AdamW, lr 1e-4, weight decay 1e-4, gradient clipping 0.1 (como DETR), 8 épocas, batch 2, fp32, sin aumentación | Hiperparámetros del artículo original; mismo protocolo para todo N | Mixed precision (riesgo de inestabilidad en el matching) | |
-| D14 | 2026-10-21 | Verificar el orden de clases del `data.yaml` de la copia de Kaggle antes de convertir. Resultado (2026-10-27): `visdrone.yaml` declara `nc: 10` en el orden de `VISDRONE_CLASSES`; las etiquetas de val solo contienen los índices 0 a 9 | El mapeo D11 depende del orden de clases | Asumir el orden estándar | |
+| D14 | 2026-10-21 | Verificar el orden de clases del `data.yaml` de la copia de Kaggle antes de convertir. Resultado (2026-10-27): `visdrone.yaml` declara `nc: 10` en el orden de `VISDRONE_CLASSES`; las etiquetas de val solo contienen los índices 0 a 9 | El mapeo D11 depende del orden de clases | Asumir el orden estándar | Claude ajustó la comprobación para comparar solo las 10 primeras clases y contar los índices presentes; el equipo la ejecutó |
 | D15 | 2026-10-21 | Campo receptivo teórico de referencia: **427 px** (no 483) | timm `resnet50` es ResNet v1.5 (stride en la conv 3×3); 483 px corresponde a ResNet v1 (stride en la 1×1). Verificado con r ← r + (k−1)·j | — | Claude hizo el cálculo; verificado en el notebook 02 (A6) |
 | D16 | 2026-10-27 | Transformers fijado en 4.57.6 (`requirements.txt`) | La imagen de Kaggle trae 5.16.1, que rompe `processor.pad`, `backbone.conv_encoder` y `output_attentions` (SDPA por defecto); con 4.57.6 el código corre sin cambios | Portar el código a la API 5.x | Claude detectó la incompatibilidad en una prueba local; el equipo fijó la versión |
 | D17 | 2026-10-27 | Prioridad de variantes: N=100 y N=300; N=500 solo si sobra cómputo | En val, el techo de recall es 89,0 % con N=100, 99,9 % con N=300 y 100 % con N=500: N=500 no cambia el techo, solo probaría el efecto de exceso de queries (H2) | Correr las tres variantes | Claude propuso la prioridad a partir del techo medido; el equipo decidió |
+| D18 | 2026-10-28 | Preprocesamiento de train (600) y val (548) una sola vez, en RAM (5,0 GiB), reutilizado en todas las épocas, variantes y evaluaciones (`cached_loader`, `predict_cached` en el notebook 03) | Sin aumentación (D13) el preprocesamiento es determinista; repetirlo en cada época solo cuesta tiempo. La precarga tarda 31 s | Leer y procesar desde disco en cada época y en cada evaluación | Claude propuso el cambio y verificó con datos sintéticos que los lotes, su orden y las detecciones son idénticos a `make_loader` y `predict`; el zero-shot en Kaggle reprodujo exactamente la tabla previa |
 
 ## Hipótesis (escribir y commitear ANTES de entrenar)
 - **H1.** Con N = 100, el recall cae en escenas muy densas, porque no se pueden emitir más detecciones que queries. *Esperado:* AR@500 del grupo "high" (y sobre todo `gt100`) claramente menor que en "low"; en la figura recall vs techo, los puntos de N=100 con n > 100 quedan en o bajo la curva min(1, 100/n).
@@ -34,32 +35,32 @@ Regla del equipo: las hipótesis se escriben y se **commitean antes** de ejecuta
 - **H2.** Subir N a 300–500 mejora sobre todo las escenas densas y casi nada las escasas; demasiadas queries pueden dificultar el entrenamiento. *Esperado:* ΔAR@500 (300 − 100) mayor en `high`/`gt100` que en `low`; con el mismo número de épocas, la pérdida de N=300 baja más lento.
 - **H3.** El costo en FLOPs y latencia de más queries es pequeño (solo crece el decoder). *Esperado:* ΔGFLOPs (500 vs 100) de pocos puntos porcentuales; el backbone domina el costo.
 
-*Fecha y hora del commit de estas hipótesis:* ______ (copiar de `git log -1 -- DESIGN_LOG.md`)
+*Fecha y hora del commit de estas hipótesis:* H1 a H3 en `6365dcb` (2026-10-21 12:14 -05:00); dato previo y criterio de H1 en `940f36c` (2026-10-27 22:56 -05:00). Ambos son anteriores a cualquier corrida de entrenamiento.
 
 ## Registro de corridas
 | Corrida | Fecha | N | GPU | Minutos | Loss final | AR@500 overall | AR@500 `gt100` | AP overall | Notas |
 |---|---|---|---|---|---|---|---|---|---|
-| Zero-shot (COCO, 6 clases) | | 100 | | — | — | | | | punto de partida Fase C |
-| B-100 | | 100 | | | | | | | control |
-| B-300 | | 300 | | | | | | | |
-| B-500 | | 500 | | | | | | | si hay tiempo |
+| Zero-shot (COCO, 6 clases) | 2026-10-28 | 100 | T4 | no medido | no aplica | 0,107 | 0,075 | 0,061 | Punto de partida de la Fase C; métricas sobre las 6 clases mapeadas (D11) |
+| B-100 | 2026-10-28 | 100 | T4 | 7,8 | 3,4816 | 0,024 | 0,011 | 0,009 | Control. Entre 39 y 44 s por época (la primera, hasta 51 s). En las 6 clases mapeadas: AP 0,015 y AR@500 0,039 |
+| B-300 | 2026-10-28 | 300 | T4 | 9,3 | 3,2727 | 0,023 | 0,011 | 0,005 | Entre 40 y 43 s por época. En las 6 clases mapeadas: AP 0,008 y AR@500 0,037 |
+| B-500 | | 500 | | | | | | | No ejecutada (D17) |
 
 ## Resultados Fase A (resumen)
 | Medición | Valor | Archivo |
 |---|---|---|
-| Parámetros totales / % backbone / % decoder | | `results/params_por_bloque.csv` |
-| GFLOPs totales / % backbone / % encoder / % decoder | | `results/flops_por_bloque.csv` |
-| Latencia (ms) y memoria pico (MiB), entrada | | `results/latencia_memoria.csv` |
-| Campo receptivo teórico vs efectivo | 427 px vs ___ px | `results/campo_receptivo.png` |
-| AP línea base COCO (500 imgs) vs 42.0 reportado | | `results/linea_base_coco.csv` |
-| ΔGFLOPs y Δlatencia N=500 vs N=100 | | `results/costo_vs_N.csv` |
+| Parámetros totales / % backbone / % decoder | 41,52 M (41 M en Carion et al.) / 56,5 % / 22,8 %; encoder 19,0 % | `results/params_por_bloque.csv` |
+| GFLOPs totales / % backbone / % encoder / % decoder | 191,96 GFLOPs (≈ 96 GMAC) en la imagen más densa de val a lado corto 800 / 85,8 % / 11,5 % / 2,1 %. Convención de `torch.utils.flop_counter`: 1 MAC = 2 FLOPs; no es comparable directamente con los 86 GFLOPS de Carion et al., medidos sobre imágenes de COCO | `results/flops_por_bloque.csv` |
+| Latencia (ms) y memoria pico (MiB), entrada | 82,6 ms (CSV); T4, fp32, batch 1, entrada 750 × 1333. Por bloque (una pasada): backbone 65,2 ms, encoder 12,6 ms, decoder 6,9 ms. Una segunda corrida (salida del notebook guardado) dio 83,5 ms. Memoria: 461 MiB con pesos en la salida del notebook; el valor del CSV (1555 MiB) incluye tensores que dejaron celdas anteriores, porque A3 no resta la memoria base (A8 sí lo hace) | `results/latencia_memoria.csv` |
+| Campo receptivo teórico vs efectivo | 427 px (483 px en ResNet v1) vs 200 × 182 px (región con gradiente > 5 % del máximo, en píxeles de la entrada procesada) | `results/campo_receptivo.png` |
+| AP línea base COCO (500 imgs) vs 42.0 reportado | AP 45,6 / AP50 65,0 / AP75 48,0 / AP_S 22,1 / AP_M 50,4 / AP_L 67,5 (Carion et al.: 42,0 / 62,4 / 44,2 / 20,5 / 45,8 / 61,1). Subconjunto aleatorio de 500 imágenes (semilla 42), 6,5 objetos por imagen. AP@500 = AP y AR@500 = AR@100 (59,2): con 100 queries, ampliar `maxDets` no cambia nada | `results/linea_base_coco.csv` |
+| ΔGFLOPs y Δlatencia N=500 vs N=100 | Entrada 480 × 853. GFLOPs: 77,77 / 82,28 / 87,27 para N = 100 / 300 / 500 (+5,79 % y +12,21 %). Latencia: 37,17 / 39,67 / 42,69 ms (+6,72 % y +14,83 %). Memoria pico de la variante (pesos y activaciones): unos 270 MiB en los tres casos. Los incrementos de FLOPs coinciden con un cálculo analítico del decoder (4,50 y 4,99 GFLOPs). Una segunda corrida dio 39,03 / 41,69 / 44,96 ms (+6,80 % y +15,18 %): la latencia absoluta varía cerca de 5 % entre corridas; el incremento relativo se mantiene | `results/costo_vs_N.csv` |
 
-## Resultados vs. expectativas (completar tras ejecutar)
+## Resultados vs. expectativas
 | Hipótesis | Qué pasó | ¿Se cumplió? | Por qué (explicación) |
 |---|---|---|---|
-| H1 | | | |
-| H2 | | | |
-| H3 | | | |
+| H1 | El recall a IoU 0,5 de N = 100 cae con la densidad: 0,47 / 0,27 / 0,17 en imágenes con hasta 25, 50 y 100 objetos, y 0,12 / 0,07 / 0,06 / 0,03 en los tramos de más de 100 (techo min(1, 100/n): 0,85 / 0,58 / 0,45 / 0,32). AR@500: 0,057 en `low` y 0,011 en `gt100` | No se puede confirmar | La caída ya ocurre donde el techo vale 1 (n ≤ 100) y, para n > 100, el recall medido queda muy por debajo del techo. Según el criterio registrado antes de entrenar, la restricción activa es la calidad de la detección (objetos pequeños, entrenamiento corto), no el número de queries |
+| H2 | De N = 100 a N = 300, el recall por tramo de densidad cambia como máximo 0,006; AR@500 overall pasa de 0,024 a 0,023 y en `gt100` se mantiene en 0,011; el AP baja de 0,009 a 0,005. La pérdida final de N = 300 es menor (3,27 frente a 3,48) y su error de cardinalidad es el doble (78 frente a 38) | No | Con el modelo lejos del techo, más queries no pueden aportar recall. La menor pérdida de N = 300 no indica mejor aprendizaje: con más queries, el emparejamiento húngaro encuentra parejas más cercanas y baja la pérdida de cajas. El exceso de queries produce más detecciones espurias (error de cardinalidad), consistente con la segunda parte de H2 |
+| H3 | El backbone domina el costo (85,8 % de los FLOPs a 800). A 512, N = 300 añade 5,8 % de FLOPs y 6,7 % de latencia; N = 500 añade 12,2 % y 14,8 %. La memoria no cambia de forma apreciable | Parcialmente | El costo del decoder crece de forma lineal en N (proyecciones, FFN y atención cruzada) más un término cuadrático por la autoatención entre queries, por lo que el segundo incremento (300 → 500) es mayor que el primero. Con N = 500 el aumento supera lo previsto como "pocos puntos porcentuales". La proporción depende de la resolución: a 512 el backbone es más barato y el mismo costo extra del decoder pesa más |
 
 ## Lo que no funcionó / limitaciones
 - Entrenamiento corto (8 épocas) en un subconjunto de 600 imágenes: interpretar diferencias relativas, no el AP absoluto.
@@ -67,9 +68,11 @@ Regla del equipo: las hipótesis se escriben y se **commitean antes** de ejecuta
 - Resolución reducida (512): perjudica justo a los objetos pequeños; puede confundir el efecto de N con el de la resolución.
 - La copia YOLO de Kaggle ya no incluye las "ignored regions" ni las marcas de oclusión/truncamiento de VisDrone: los detectores pueden ser penalizados por detectar objetos en zonas ignoradas en la anotación original.
 - Zero-shot solo cubre 6 de 10 clases; person→pedestrian es ambiguo (VisDrone separa pedestrian y people).
-- Val es más denso que el subconjunto de train (70,7 frente a 54,9 objetos por imagen en promedio). La proporción de imágenes de train con n > 100 aún no se midió; es necesaria para interpretar H2.
+- Val es más denso que el subconjunto de train: 70,7 frente a 54,9 objetos por imagen en promedio, y 19,3 % frente a 9,5 % de imágenes con n > 100 (106 de 548 frente a 57 de 600); ninguna imagen de train supera 300 objetos (máximo 253).
+- **El fine-tuning empeoró al modelo respecto del zero-shot.** En las 6 clases mapeadas, AP 0,015 (N = 100) y 0,008 (N = 300) frente a 0,061 sin entrenar. Las detecciones colapsan en las clases mayoritarias del subconjunto de train (car 43 % y pedestrian 22 % de las cajas): bicycle, tricycle y awning-tricycle tienen recall 0. Unas 2400 iteraciones (8 épocas de 300) no bastan para entrenar una cabeza de clases nueva en DETR. Es la limitación central del E2 y la dirección principal del E3 (más épocas, train completo).
+- Reproducibilidad: dos ejecuciones independientes del notebook 03 dieron pérdidas por época y métricas idénticas; solo variaron los tiempos (entre 2 y 4 s por época, salvo la primera época de N = 100, con 12 s de diferencia).
 - La primera lectura de cada archivo del dataset montado en Kaggle es lenta: en una sesión nueva, la primera época tarda más que las siguientes. Para comparar tiempos entre variantes se usan las épocas 2 en adelante.
-- (agregar aquí lo que falle al ejecutar: OOM, divergencia, tiempos, etc.)
+- La línea base de COCO se midió sobre 500 imágenes y no sobre las 5000 de val2017: el AP (45,6) supera en 3,6 puntos al reportado, diferencia probablemente debida al muestreo; no se evaluó val2017 completo para confirmarlo.
 
 ## Preparación para la defensa oral (cada integrante)
 1. **¿Por qué el recall de DETR tiene un techo igual a N por imagen?** Cada query produce exactamente una predicción y el emparejamiento húngaro es 1 a 1; con n > N objetos, al menos n − N quedan sin pareja → recall ≤ N/n.
@@ -78,3 +81,5 @@ Regla del equipo: las hipótesis se escriben y se **commitean antes** de ejecuta
 4. **¿Por qué se sube `maxDets` a 500 en la evaluación?** COCOeval corta en 100 detecciones por imagen por defecto; sin el cambio, N=300/500 no podrían mostrar su ventaja.
 5. **¿Qué parte del costo de DETR está en el backbone, el encoder y el decoder?** Ver tablas A1/A2. Clave: el decoder escala con N (self-attention N×N y cross-attention N×HW), pero el backbone domina los FLOPs.
 6. **¿Por qué el campo receptivo es 427 y no 483 px?** Ver D15.
+7. **¿Por qué H1 no se pudo confirmar?** El techo solo limita si el modelo detecta casi todo lo que sus queries permiten; aquí el recall cae ya con n ≤ 100 (techo = 1) y queda muy por debajo de min(1, 100/n) para n > 100.
+8. **¿Por qué el modelo ajustado rinde menos que el zero-shot?** Cabeza de clases nueva, 2400 iteraciones y clases desbalanceadas: el modelo colapsa en car y pedestrian.
