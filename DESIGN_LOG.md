@@ -34,7 +34,7 @@ Regla del equipo: las hipótesis se escriben y se **commitean antes** de ejecuta
 - **H2.** Subir N a 300–500 mejora sobre todo las escenas densas y casi nada las escasas; demasiadas queries pueden dificultar el entrenamiento. *Esperado:* ΔAR@500 (300 − 100) mayor en `high`/`gt100` que en `low`; con el mismo número de épocas, la pérdida de N=300 baja más lento.
 - **H3.** El costo en FLOPs y latencia de más queries es pequeño (solo crece el decoder). *Esperado:* ΔGFLOPs (500 vs 100) de pocos puntos porcentuales; el backbone domina el costo.
 
-*Fecha y hora del commit de estas hipótesis:* ______ (copiar de `git log -1 -- DESIGN_LOG.md`)
+*Fecha y hora del commit de estas hipótesis:* H1 a H3 en `6365dcb` (2026-10-21 12:14 -05:00); dato previo y criterio de H1 en `940f36c` (2026-10-27 22:56 -05:00). Ambos son anteriores a cualquier corrida de entrenamiento.
 
 ## Registro de corridas
 | Corrida | Fecha | N | GPU | Minutos | Loss final | AR@500 overall | AR@500 `gt100` | AP overall | Notas |
@@ -47,19 +47,19 @@ Regla del equipo: las hipótesis se escriben y se **commitean antes** de ejecuta
 ## Resultados Fase A (resumen)
 | Medición | Valor | Archivo |
 |---|---|---|
-| Parámetros totales / % backbone / % decoder | | `results/params_por_bloque.csv` |
-| GFLOPs totales / % backbone / % encoder / % decoder | | `results/flops_por_bloque.csv` |
-| Latencia (ms) y memoria pico (MiB), entrada | | `results/latencia_memoria.csv` |
-| Campo receptivo teórico vs efectivo | 427 px vs ___ px | `results/campo_receptivo.png` |
-| AP línea base COCO (500 imgs) vs 42.0 reportado | | `results/linea_base_coco.csv` |
-| ΔGFLOPs y Δlatencia N=500 vs N=100 | | `results/costo_vs_N.csv` |
+| Parámetros totales / % backbone / % decoder | 41,52 M (41 M en Carion et al.) / 56,5 % / 22,8 %; encoder 19,0 % | `results/params_por_bloque.csv` |
+| GFLOPs totales / % backbone / % encoder / % decoder | 191,96 GFLOPs (≈ 96 GMAC) en la imagen más densa de val a lado corto 800 / 85,8 % / 11,5 % / 2,1 %. Convención de `torch.utils.flop_counter`: 1 MAC = 2 FLOPs; no es comparable directamente con los 86 GFLOPS de Carion et al., medidos sobre imágenes de COCO | `results/flops_por_bloque.csv` |
+| Latencia (ms) y memoria pico (MiB), entrada | 82,8 ms; 461 MiB con pesos; T4, fp32, batch 1, lado corto 800. Por bloque (una pasada): backbone 66,0 ms, encoder 13,1 ms, decoder 6,8 ms | `results/latencia_memoria.csv` |
+| Campo receptivo teórico vs efectivo | 427 px (483 px en ResNet v1) vs 200 × 182 px (región con gradiente > 5 % del máximo, en píxeles de la entrada procesada) | `results/campo_receptivo.png` |
+| AP línea base COCO (500 imgs) vs 42.0 reportado | AP 45,6 / AP50 65,0 / AP75 48,0 / AP_S 22,1 / AP_M 50,4 / AP_L 67,5 (Carion et al.: 42,0 / 62,4 / 44,2 / 20,5 / 45,8 / 61,1). Subconjunto aleatorio de 500 imágenes (semilla 42), 6,5 objetos por imagen. AP@500 = AP y AR@500 = AR@100 (59,2): con 100 queries, ampliar `maxDets` no cambia nada | `results/linea_base_coco.csv` |
+| ΔGFLOPs y Δlatencia N=500 vs N=100 | Entrada 480 × 853. GFLOPs: 77,77 / 82,28 / 87,27 para N = 100 / 300 / 500 (+5,79 % y +12,21 %). Latencia: 37,17 / 39,67 / 42,69 ms (+6,72 % y +14,83 %). Memoria pico de la variante (pesos y activaciones): unos 270 MiB en los tres casos. Los incrementos de FLOPs coinciden con un cálculo analítico del decoder (4,50 y 4,99 GFLOPs) | `results/costo_vs_N.csv` |
 
 ## Resultados vs. expectativas (completar tras ejecutar)
 | Hipótesis | Qué pasó | ¿Se cumplió? | Por qué (explicación) |
 |---|---|---|---|
 | H1 | | | |
 | H2 | | | |
-| H3 | | | |
+| H3 | El backbone domina el costo (85,8 % de los FLOPs a 800). A 512, N = 300 añade 5,8 % de FLOPs y 6,7 % de latencia; N = 500 añade 12,2 % y 14,8 %. La memoria no cambia de forma apreciable | Parcialmente | El costo del decoder crece de forma lineal en N (proyecciones, FFN y atención cruzada) más un término cuadrático por la autoatención entre queries, por lo que el segundo incremento (300 → 500) es mayor que el primero. Con N = 500 el aumento supera lo previsto como "pocos puntos porcentuales". La proporción depende de la resolución: a 512 el backbone es más barato y el mismo costo extra del decoder pesa más |
 
 ## Lo que no funcionó / limitaciones
 - Entrenamiento corto (8 épocas) en un subconjunto de 600 imágenes: interpretar diferencias relativas, no el AP absoluto.
@@ -69,6 +69,7 @@ Regla del equipo: las hipótesis se escriben y se **commitean antes** de ejecuta
 - Zero-shot solo cubre 6 de 10 clases; person→pedestrian es ambiguo (VisDrone separa pedestrian y people).
 - Val es más denso que el subconjunto de train (70,7 frente a 54,9 objetos por imagen en promedio). La proporción de imágenes de train con n > 100 aún no se midió; es necesaria para interpretar H2.
 - La primera lectura de cada archivo del dataset montado en Kaggle es lenta: en una sesión nueva, la primera época tarda más que las siguientes. Para comparar tiempos entre variantes se usan las épocas 2 en adelante.
+- La línea base de COCO se midió sobre 500 imágenes y no sobre las 5000 de val2017: el AP (45,6) supera en 3,6 puntos al reportado, diferencia probablemente debida al muestreo; no se evaluó val2017 completo para confirmarlo.
 - (agregar aquí lo que falle al ejecutar: OOM, divergencia, tiempos, etc.)
 
 ## Preparación para la defensa oral (cada integrante)
