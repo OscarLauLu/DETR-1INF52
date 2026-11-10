@@ -28,6 +28,10 @@ Regla del equipo: las hipótesis se escriben y se **commitean antes** de ejecuta
 | D16 | 2026-10-27 | Transformers fijado en 4.57.6 (`requirements.txt`) | La imagen de Kaggle trae 5.16.1, que rompe `processor.pad`, `backbone.conv_encoder` y `output_attentions` (SDPA por defecto); con 4.57.6 el código corre sin cambios | Portar el código a la API 5.x | Claude detectó la incompatibilidad en una prueba local; el equipo fijó la versión |
 | D17 | 2026-10-27 | Prioridad de variantes: N=100 y N=300; N=500 solo si sobra cómputo | En val, el techo de recall es 89,0 % con N=100, 99,9 % con N=300 y 100 % con N=500: N=500 no cambia el techo, solo probaría el efecto de exceso de queries (H2) | Correr las tres variantes | Claude propuso la prioridad a partir del techo medido; el equipo decidió |
 | D18 | 2026-10-28 | Preprocesamiento de train (600) y val (548) una sola vez, en RAM (5,0 GiB), reutilizado en todas las épocas, variantes y evaluaciones (`cached_loader`, `predict_cached` en el notebook 03) | Sin aumentación (D13) el preprocesamiento es determinista; repetirlo en cada época solo cuesta tiempo. La precarga tarda 31 s | Leer y procesar desde disco en cada época y en cada evaluación | Claude propuso el cambio y verificó con datos sintéticos que los lotes, su orden y las detecciones son idénticos a `make_loader` y `predict`; el zero-shot en Kaggle reprodujo exactamente la tabla previa |
+| D19 | 2026-11-10 | E3: cabeza de clases inicializada desde la cabeza de COCO. Cada clase de VisDrone copia la fila de su clase COCO equivalente o de la más parecida (people ← person, van ← car, tricycle y awning-tricycle ← motorcycle); «no object» copia «no object» (`VISDRONE_TO_COCO_INIT` en `src/train_e3.py`) | En el E2 la cabeza aleatoria, con 2400 iteraciones, colapsó en car y pedestrian y quedó por debajo del zero-shot (AP 0,015 frente a 0,061). Con la cabeza de COCO el ajuste fino parte del punto del zero-shot en lugar de reaprender la clasificación desde cero | Cabeza aleatoria con más épocas; cabeza de 6 clases (dejaría fuera 4 clases de VisDrone) | Claude propuso el mapeo y la comprobación (filas copiadas y resto de pesos idéntico al de COCO, probado en CPU) |
+| D20 | 2026-11-10 | E3: backbone entrenable con lr 1e-5 y el resto con 1e-4; stem y layer1 siguen congelados (configuración de DETR en Hugging Face) | Configuración del artículo original. Las features de COCO no están ajustadas a objetos de pocos píxeles vistos desde arriba, que es donde el modelo falla | Backbone congelado (D5) | Claude propuso; verificado que layer2 a layer4 suman 23,23 M parámetros entrenables |
+| D21 | 2026-11-10 | E3: 1500 imágenes de train (`make_subset` con semilla 42 sobre el train completo), validación completa (548, la misma del E2), lado corto 512, 20 épocas, lr ×0,1 en la época 14, evaluación en las épocas 8, 14 y 20 | Unas 15 000 iteraciones frente a 2400 en el E2, dentro de una sesión de Kaggle. La resolución se mantiene para que la comparación con el E2 solo cambie el protocolo de entrenamiento | Train completo (6471 imágenes): no cabe en el tiempo disponible; subir la resolución a 800 (2,4 veces más cómputo) | Claude estimó el tiempo a partir de las épocas medidas en el E2 |
+| D22 | 2026-11-10 | E3: preprocesamiento único guardado en disco como fp16 (memmap) y leído por dos procesos, uno por GPU de la T4 x2; N = 100 y N = 300 corren en paralelo. El zero-shot se reevalúa con la misma tubería | Mismo protocolo que D18 sin duplicar la RAM; el paso a fp16 cambia los píxeles normalizados en menos de 0,001 (comparado con `processor.pad`); máscaras y etiquetas idénticas | Correr las variantes una tras otra (doble de tiempo) | Claude escribió `src/train_e3.py` y el notebook 04 y los probó en CPU con un modelo y datos sintéticos |
 
 ## Hipótesis (escribir y commitear ANTES de entrenar)
 - **H1.** Con N = 100, el recall cae en escenas muy densas, porque no se pueden emitir más detecciones que queries. *Esperado:* AR@500 del grupo "high" (y sobre todo `gt100`) claramente menor que en "low"; en la figura recall vs techo, los puntos de N=100 con n > 100 quedan en o bajo la curva min(1, 100/n).
@@ -37,6 +41,12 @@ Regla del equipo: las hipótesis se escriben y se **commitean antes** de ejecuta
 
 *Fecha y hora del commit de estas hipótesis:* H1 a H3 en `6365dcb` (2026-10-21 12:14 -05:00); dato previo y criterio de H1 en `940f36c` (2026-10-27 22:56 -05:00). Ambos son anteriores a cualquier corrida de entrenamiento.
 
+### Hipótesis del E3 (commiteadas antes de ejecutar el notebook 04)
+El protocolo de entrenamiento cambia (D19 a D21), igual para ambas variantes; la variable de la ablación sigue siendo N.
+- **H4.** Con la cabeza inicializada desde COCO y el backbone entrenable, el ajuste fino supera al zero-shot y no colapsa. *Esperado:* en la época 20, AP en las 6 clases mapeadas mayor que el del zero-shot (0,061 en el E2) para N = 100 y N = 300, y AP mayor que 0 en las 10 clases. *Por qué:* el modelo parte del zero-shot y las clases sin equivalente heredan una clase de apariencia cercana.
+- **H5.** Aun con el modelo mejorado, a lado corto 512 la calidad de la detección sigue siendo la restricción activa en escenas densas. *Esperado:* con N = 100, la eficiencia η = recall/techo en el tramo (100, 150] queda por debajo de 0,5, y η decrece con n también en los tramos con n ≤ 100, donde el techo vale 1. *Por qué:* en VisDrone la densidad covaría con objetos más pequeños. *Criterio:* si η ≥ 0,7 en n > 100, la cota de N pasa a ser la restricción activa y H1 se puede evaluar.
+- **H6.** El aumento a N = 300 ayuda solo donde la cota actúa. *Esperado:* ΔAR@500 (300 − 100) positivo en `gt100` y mayor que en `low`, donde debería ser cercano a 0; si H5 se cumple, la diferencia será pequeña (menor que 0,01).
+
 ## Registro de corridas
 | Corrida | Fecha | N | GPU | Minutos | Loss final | AR@500 overall | AR@500 `gt100` | AP overall | Notas |
 |---|---|---|---|---|---|---|---|---|---|
@@ -44,6 +54,9 @@ Regla del equipo: las hipótesis se escriben y se **commitean antes** de ejecuta
 | B-100 | 2026-10-28 | 100 | T4 | 7,8 | 3,4816 | 0,024 | 0,011 | 0,009 | Control. Entre 39 y 44 s por época (la primera, hasta 51 s). En las 6 clases mapeadas: AP 0,015 y AR@500 0,039 |
 | B-300 | 2026-10-28 | 300 | T4 | 9,3 | 3,2727 | 0,023 | 0,011 | 0,005 | Entre 40 y 43 s por época. En las 6 clases mapeadas: AP 0,008 y AR@500 0,037 |
 | B-500 | | 500 | | | | | | | No ejecutada (D17) |
+| E3-ZS | | 100 | T4 | | no aplica | | | | Zero-shot reevaluado con la tubería del E3 (6 clases) |
+| E3-100 | | 100 | T4 (GPU 0) | | | | | | D19 a D22 |
+| E3-300 | | 300 | T4 (GPU 1) | | | | | | D19 a D22; en paralelo con E3-100 |
 
 ## Resultados Fase A (resumen)
 | Medición | Valor | Archivo |
