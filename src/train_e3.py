@@ -131,12 +131,17 @@ def build_model_e3(N, ckpt=CKPT, query_noise=0.1, seed=42, init_from_coco=True):
     return model
 
 
-def param_groups(model, lr, lr_backbone, wd):
+def param_groups(model, lr, lr_backbone, wd, lr_head=None):
+    """Sin lr_head, los mismos dos grupos del E3. Con lr_head (D25), la cabeza de clases va en un tercer grupo."""
+    head = lambda n: lr_head is not None and n.startswith('class_labels_classifier')
     bb = [p for n, p in model.named_parameters() if p.requires_grad and 'backbone' in n]
-    rest = [p for n, p in model.named_parameters() if p.requires_grad and 'backbone' not in n]
-    return [{'params': rest, 'lr': lr, 'weight_decay': wd},
-            {'params': bb, 'lr': lr_backbone, 'weight_decay': wd}], sum(p.numel() for p in bb), \
-        sum(p.numel() for p in rest)
+    rest = [p for n, p in model.named_parameters() if p.requires_grad and 'backbone' not in n and not head(n)]
+    hd = [p for n, p in model.named_parameters() if p.requires_grad and head(n)]
+    groups = [{'params': rest, 'lr': lr, 'weight_decay': wd},
+              {'params': bb, 'lr': lr_backbone, 'weight_decay': wd}]
+    if hd:
+        groups.append({'params': hd, 'lr': lr_head, 'weight_decay': wd})
+    return groups, sum(p.numel() for p in bb), sum(p.numel() for p in rest + hd)
 
 
 # ============================================================================ predicción y evaluación
@@ -205,11 +210,12 @@ def train(args):
         print(f'[{tag}] zero-shot listo', flush=True)
 
     model = build_model_e3(args.N, ckpt=args.ckpt, init_from_coco=not args.no_coco_head).to(device)
-    groups_opt, n_bb, n_rest = param_groups(model, args.lr, args.lr_backbone, args.wd)
+    groups_opt, n_bb, n_rest = param_groups(model, args.lr, args.lr_backbone, args.wd, args.lr_head)
     opt = torch.optim.AdamW(groups_opt)
     sched = torch.optim.lr_scheduler.StepLR(opt, step_size=args.lr_drop, gamma=0.1)
     print(f'[{tag}] entrenables: backbone {n_bb / 1e6:.2f} M, resto {n_rest / 1e6:.2f} M', flush=True)
 
+    scaler = torch.amp.GradScaler('cuda', enabled=args.amp)   # D24: sin --amp, idéntico al E3
     g = torch.Generator(); g.manual_seed(args.seed)
     loader = torch.utils.data.DataLoader(
         tr, batch_size=args.bs, shuffle=True, generator=g, num_workers=2,
@@ -223,11 +229,14 @@ def train(args):
             if args.max_iters and it >= args.max_iters:
                 break
             labels = [{k: v.to(device) for k, v in t.items()} for t in labels]
-            out = model(pixel_values=pv.to(device), pixel_mask=mask.to(device), labels=labels)
+            with torch.autocast('cuda', dtype=torch.float16, enabled=args.amp):
+                out = model(pixel_values=pv.to(device), pixel_mask=mask.to(device), labels=labels)
             opt.zero_grad(set_to_none=True)
-            out.loss.backward()
+            scaler.scale(out.loss).backward()
+            scaler.unscale_(opt)                          # antes del clip: recorta gradientes reales
             torch.nn.utils.clip_grad_norm_(model.parameters(), args.clip)
-            opt.step()
+            scaler.step(opt)                              # omite el paso si hubo gradientes no finitos
+            scaler.update()
             if not torch.isfinite(out.loss):
                 raise RuntimeError(f'pérdida no finita en ep {ep} it {it}')
             tot += out.loss.item(); nb += 1
@@ -272,6 +281,8 @@ if __name__ == '__main__':
     ap.add_argument('--seed', type=int, default=42)
     ap.add_argument('--zero_shot', action='store_true')
     ap.add_argument('--no_coco_head', action='store_true')
+    ap.add_argument('--lr_head', type=float, default=None)   # D25: lr propio de la cabeza de clases
+    ap.add_argument('--amp', action='store_true')            # D24: precisión mixta fp16 en el entrenamiento
     ap.add_argument('--max_iters', type=int, default=0)      # solo para pruebas
     ap.add_argument('--max_val', type=int, default=None)     # solo para pruebas
     a = ap.parse_args()

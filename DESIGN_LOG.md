@@ -32,6 +32,9 @@ Regla del equipo: las hipótesis se escriben y se **commitean antes** de ejecuta
 | D20 | 2026-11-10 | E3: backbone entrenable con lr 1e-5 y el resto con 1e-4; stem y layer1 siguen congelados (configuración de DETR en Hugging Face) | Configuración del artículo original. Las features de COCO no están ajustadas a objetos de pocos píxeles vistos desde arriba, que es donde el modelo falla | Backbone congelado (D5) | Claude propuso; verificado que layer2 a layer4 suman 23,23 M parámetros entrenables |
 | D21 | 2026-11-10 | E3: 1500 imágenes de train (`make_subset` con semilla 42 sobre el train completo), validación completa (548, la misma del E2), lado corto 512, 20 épocas, lr ×0,1 en la época 14, evaluación en las épocas 8, 14 y 20 | Unas 15 000 iteraciones frente a 2400 en el E2, dentro de una sesión de Kaggle. La resolución se mantiene para que la comparación con el E2 solo cambie el protocolo de entrenamiento | Train completo (6471 imágenes): no cabe en el tiempo disponible; subir la resolución a 800 (2,4 veces más cómputo) | Claude estimó el tiempo a partir de las épocas medidas en el E2 |
 | D22 | 2026-11-10 | E3: preprocesamiento único guardado en disco como fp16 (memmap) y leído por dos procesos, uno por GPU de la T4 x2; N = 100 y N = 300 corren en paralelo. El zero-shot se reevalúa con la misma tubería | Mismo protocolo que D18 sin duplicar la RAM; el paso a fp16 cambia los píxeles normalizados en menos de 0,001 (comparado con `processor.pad`); máscaras y etiquetas idénticas | Correr las variantes una tras otra (doble de tiempo) | Claude escribió `src/train_e3.py` y el notebook 04 y los probó en CPU con un modelo y datos sintéticos |
+| D23 | 2026-11-10 | E4: lr 2e-5 en el transformer y 2e-6 en el backbone | Con batch 2 (8 veces menor que el batch total de referencia de DETR, 16), lr 1e-4 hace oscilar la pérdida antes del cambio de lr. Exploración posterior al rechazo de H4: AP en las 6 clases 0,036 (E3), 0,041 (lr_drop en la época 8) y 0,059 (lr 2e-5) | lr_drop en la época 8 | Claude propuso el ajuste por tamaño de batch |
+| D24 | 2026-11-10 | E4: precisión mixta fp16 en el entrenamiento (`--amp`); la evaluación sigue en fp32. Revisa D13 y queda sujeta a H7 | Las T4 tienen tensor cores para fp16; menos tiempo por corrida | Mantener fp32 (D13) | Claude escribió el cambio |
+| D25 | 2026-11-10 | E4: lr 1e-4 para la cabeza de clases (`--lr_head`), resto según D23 | Con D23, van, tricycle y awning-tricycle quedan en AP 0: sus filas parten idénticas a las de car y motorcycle (D19) y con lr 2e-5 no llegan a separarse | Ruido en las filas duplicadas | Claude propuso el diagnóstico |
 
 ## Hipótesis (escribir y commitear ANTES de entrenar)
 - **H1.** Con N = 100, el recall cae en escenas muy densas, porque no se pueden emitir más detecciones que queries. *Esperado:* AR@500 del grupo "high" (y sobre todo `gt100`) claramente menor que en "low"; en la figura recall vs techo, los puntos de N=100 con n > 100 quedan en o bajo la curva min(1, 100/n).
@@ -47,6 +50,10 @@ El protocolo de entrenamiento cambia (D19 a D21), igual para ambas variantes; la
 - **H5.** Aun con el modelo mejorado, a lado corto 512 la calidad de la detección sigue siendo la restricción activa en escenas densas. *Esperado:* con N = 100, la eficiencia η = recall/techo en el tramo (100, 150] queda por debajo de 0,5, y η decrece con n también en los tramos con n ≤ 100, donde el techo vale 1. *Por qué:* en VisDrone la densidad covaría con objetos más pequeños. *Criterio:* si η ≥ 0,7 en n > 100, la cota de N pasa a ser la restricción activa y H1 se puede evaluar.
 - **H6.** El aumento a N = 300 ayuda solo donde la cota actúa. *Esperado:* ΔAR@500 (300 − 100) positivo en `gt100` y mayor que en `low`, donde debería ser cercano a 0; si H5 se cumple, la diferencia será pequeña (menor que 0,01).
 
+### Hipótesis del E4 (commiteadas antes de ejecutar el notebook 05)
+- **H7.** Con `--amp` y la configuración D23, el AP en las 6 clases mapeadas en la época 20 difiere del de B en menos de 0,003 y el tiempo medio por época baja al menos 30 %.
+- **H8.** Con `--lr_head 1e-4` (D25), las 10 clases tienen AP > 0 en la época 20 y el AP en las 6 clases mapeadas no baja respecto de B (0,059).
+
 ## Registro de corridas
 | Corrida | Fecha | N | GPU | Minutos | Loss final | AR@500 overall | AR@500 `gt100` | AP overall | Notas |
 |---|---|---|---|---|---|---|---|---|---|
@@ -57,6 +64,11 @@ El protocolo de entrenamiento cambia (D19 a D21), igual para ambas variantes; la
 | E3-ZS | | 100 | T4 | | no aplica | | | | Zero-shot reevaluado con la tubería del E3 (6 clases) |
 | E3-100 | | 100 | T4 (GPU 0) | | | | | | D19 a D22 |
 | E3-300 | | 300 | T4 (GPU 1) | | | | | | D19 a D22; en paralelo con E3-100 |
+| E3-ZS | 2026-11-10 | 100 | T4 (GPU 0) | no medido | no aplica | 0,107 | 0,075 | 0,061 | 6 clases mapeadas |
+| E3-100 | 2026-11-10 | 100 | T4 (GPU 0) | 72,9 | 2,8341 | 0,052 | 0,033 | 0,023 | D19 a D22. 6 clases: AP 0,036 |
+| E3-300 | 2026-11-10 | 300 | T4 (GPU 1) | 83,4 | 2,6370 | 0,059 | 0,036 | 0,017 | D19 a D22. 6 clases: AP 0,026 |
+| E4-A | 2026-11-10 | 100 | T4 (GPU 0) | 72,4 | 2,7996 | 0,053 | 0,030 | 0,026 | Exploratoria: lr_drop 8. 6 clases: AP 0,041 |
+| E4-B | 2026-11-10 | 100 | T4 (GPU 1) | 73,1 | 2,7614 | 0,066 | 0,046 | 0,036 | Exploratoria: D23. 6 clases: AP 0,059. van, tricycle y awning-tricycle con AP 0 |
 
 ## Resultados Fase A (resumen)
 | Medición | Valor | Archivo |
