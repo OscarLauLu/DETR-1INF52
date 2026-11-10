@@ -1,0 +1,41 @@
+[N100] cuda | train 1500 | val 548
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794344457.050106     660 cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+Some weights of the model checkpoint at facebook/detr-resnet-50 were not used when initializing DetrForObjectDetection: ['model.backbone.conv_encoder.model.layer1.0.downsample.1.num_batches_tracked', 'model.backbone.conv_encoder.model.layer2.0.downsample.1.num_batches_tracked', 'model.backbone.conv_encoder.model.layer3.0.downsample.1.num_batches_tracked', 'model.backbone.conv_encoder.model.layer4.0.downsample.1.num_batches_tracked']
+- This IS expected if you are initializing DetrForObjectDetection from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing DetrForObjectDetection from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+Some weights of DetrForObjectDetection were not initialized from the model checkpoint at facebook/detr-resnet-50 and are newly initialized because the shapes did not match:
+- class_labels_classifier.bias: found shape torch.Size([92]) in the checkpoint and torch.Size([11]) in the model instantiated
+- class_labels_classifier.weight: found shape torch.Size([92, 256]) in the checkpoint and torch.Size([11, 256]) in the model instantiated
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+Some weights of the model checkpoint at facebook/detr-resnet-50 were not used when initializing DetrForObjectDetection: ['model.backbone.conv_encoder.model.layer1.0.downsample.1.num_batches_tracked', 'model.backbone.conv_encoder.model.layer2.0.downsample.1.num_batches_tracked', 'model.backbone.conv_encoder.model.layer3.0.downsample.1.num_batches_tracked', 'model.backbone.conv_encoder.model.layer4.0.downsample.1.num_batches_tracked']
+- This IS expected if you are initializing DetrForObjectDetection from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing DetrForObjectDetection from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+[N100] entrenables: backbone 23.23 M, resto 18.05 M
+/kaggle/working/DETR-1INF52/notebooks/../src/train_e3.py:235: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)
+  comps[k] = comps.get(k, 0.0) + float(v)
+[N100] época 1/20: loss 3.5290 (196.4 s)
+[N100] época 2/20: loss 3.2670 (199.8 s)
+[N100] época 3/20: loss 3.1701 (200.2 s)
+[N100] época 4/20: loss 3.1160 (200.4 s)
+[N100] época 5/20: loss 3.0731 (200.7 s)
+[N100] época 6/20: loss 3.0518 (200.0 s)
+[N100] época 7/20: loss 3.0029 (199.9 s)
+[N100] época 8/20: loss 2.9781 (200.5 s)
+[N100] eval ep 8: AP 0.0308 | AP mapped6 0.0514 | AR@500 gt100 0.0355 (132 s)
+[N100] época 9/20: loss 2.9630 (200.5 s)
+[N100] época 10/20: loss 2.9511 (199.7 s)
+[N100] época 11/20: loss 2.9101 (198.9 s)
+[N100] época 12/20: loss 2.8960 (199.3 s)
+[N100] época 13/20: loss 2.8748 (200.5 s)
+[N100] época 14/20: loss 2.8549 (200.1 s)
+[N100] eval ep 14: AP 0.0333 | AP mapped6 0.0548 | AR@500 gt100 0.0401 (130 s)
+[N100] época 15/20: loss 2.7916 (199.9 s)
+[N100] época 16/20: loss 2.7793 (200.1 s)
+[N100] época 17/20: loss 2.7829 (199.9 s)
+[N100] época 18/20: loss 2.7560 (199.1 s)
+[N100] época 19/20: loss 2.7631 (199.3 s)
+[N100] época 20/20: loss 2.7614 (198.4 s)
+[N100] eval ep 20: AP 0.0359 | AP mapped6 0.0590 | AR@500 gt100 0.0461 (127 s)
+[N100] FIN en 73.1 min

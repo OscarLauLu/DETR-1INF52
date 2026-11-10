@@ -61,9 +61,6 @@ El protocolo de entrenamiento cambia (D19 a D21), igual para ambas variantes; la
 | B-100 | 2026-10-28 | 100 | T4 | 7,8 | 3,4816 | 0,024 | 0,011 | 0,009 | Control. Entre 39 y 44 s por época (la primera, hasta 51 s). En las 6 clases mapeadas: AP 0,015 y AR@500 0,039 |
 | B-300 | 2026-10-28 | 300 | T4 | 9,3 | 3,2727 | 0,023 | 0,011 | 0,005 | Entre 40 y 43 s por época. En las 6 clases mapeadas: AP 0,008 y AR@500 0,037 |
 | B-500 | | 500 | | | | | | | No ejecutada (D17) |
-| E3-ZS | | 100 | T4 | | no aplica | | | | Zero-shot reevaluado con la tubería del E3 (6 clases) |
-| E3-100 | | 100 | T4 (GPU 0) | | | | | | D19 a D22 |
-| E3-300 | | 300 | T4 (GPU 1) | | | | | | D19 a D22; en paralelo con E3-100 |
 | E3-ZS | 2026-11-10 | 100 | T4 (GPU 0) | no medido | no aplica | 0,107 | 0,075 | 0,061 | 6 clases mapeadas |
 | E3-100 | 2026-11-10 | 100 | T4 (GPU 0) | 72,9 | 2,8341 | 0,052 | 0,033 | 0,023 | D19 a D22. 6 clases: AP 0,036 |
 | E3-300 | 2026-11-10 | 300 | T4 (GPU 1) | 83,4 | 2,6370 | 0,059 | 0,036 | 0,017 | D19 a D22. 6 clases: AP 0,026 |
