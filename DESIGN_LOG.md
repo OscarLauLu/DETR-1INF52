@@ -66,6 +66,8 @@ El protocolo de entrenamiento cambia (D19 a D21), igual para ambas variantes; la
 | E3-300 | 2026-11-10 | 300 | T4 (GPU 1) | 83,4 | 2,6370 | 0,059 | 0,036 | 0,017 | D19 a D22. 6 clases: AP 0,026 |
 | E4-A | 2026-11-10 | 100 | T4 (GPU 0) | 72,4 | 2,7996 | 0,053 | 0,030 | 0,026 | Exploratoria: lr_drop 8. 6 clases: AP 0,041 |
 | E4-B | 2026-11-10 | 100 | T4 (GPU 1) | 73,1 | 2,7614 | 0,066 | 0,046 | 0,036 | Exploratoria: D23. 6 clases: AP 0,059. van, tricycle y awning-tricycle con AP 0 |
+| E4-B_amp | 2026-11-10 | 100 | T4 | 63,5 | 2,7626 | 0,068 | 0,049 | 0,039 | D23 + --amp (H7). 6 clases: AP 0,0635 |
+| E4-C_head | 2026-11-10 | 100 | T4 | 74,2 | 2,7267 | 0,071 | 0,048 | 0,041 | D23 + D25, lr_head 1e-4 (H8). 6 clases: AP 0,0626 |
 
 ## Resultados Fase A (resumen)
 | Medición | Valor | Archivo |
