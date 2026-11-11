@@ -74,6 +74,13 @@ El protocolo de entrenamiento cambia (D19 a D21), igual para ambas variantes; la
 | E4-B | 2026-11-10 | 100 | T4 (GPU 1) | 73,1 | 2,7614 | 0,066 | 0,046 | 0,036 | Exploratoria: D23. 6 clases: AP 0,059. van, tricycle y awning-tricycle con AP 0 |
 | E4-B_amp | 2026-11-10 | 100 | T4 | 63,5 | 2,7626 | 0,068 | 0,049 | 0,039 | D23 + --amp (H7). 6 clases: AP 0,0635 |
 | E4-C_head | 2026-11-10 | 100 | T4 | 74,2 | 2,7267 | 0,071 | 0,048 | 0,041 | D23 + D25, lr_head 1e-4 (H8). 6 clases: AP 0,0626 |
+| E5-ZS | 2026-11-10 | 100 | T4 | no medido | no aplica | 0,062 | 0,039 | 0,028 | Zero-shot en test-dev, 6 clases mapeadas |
+| E5-N100-s42 | 2026-11-10 | 100 | T4 | 58,7 | 2,7490 | 0,070 | 0,048 | 0,037 | D27, semilla 42. Validación, 6 clases: AP 0,0580. Test-dev, 6 clases: AP 0,0487 |
+| E5-N300-s42 | 2026-11-10 | 300 | T4 | 64,8 | 2,5815 | 0,080 | 0,054 | 0,035 | D27, semilla 42. Validación, 6 clases: AP 0,0548. Test-dev, 6 clases: AP 0,0412 |
+| E5-N100-s43 | 2026-11-10 | 100 | T4 | 58,9 | 2,7375 | 0,073 | 0,050 | 0,042 | D27, semilla 43. Validación, 6 clases: AP 0,0652. Test-dev, 6 clases: AP 0,0487 |
+| E5-N300-s43 | 2026-11-10 | 300 | T4 | 65,4 | 2,5855 | 0,080 | 0,053 | 0,033 | D27, semilla 43. Validación, 6 clases: AP 0,0523. Test-dev, 6 clases: AP 0,0405 |
+| E5-N100-s44 | 2026-11-10 | 100 | T4 | 58,4 | 2,7164 | 0,073 | 0,050 | 0,040 | D27, semilla 44. Validación, 6 clases: AP 0,0612. Test-dev, 6 clases: AP 0,0501 |
+| E5-N300-s44 | 2026-11-10 | 300 | T4 | 64,3 | 2,5529 | 0,083 | 0,057 | 0,037 | D27, semilla 44. Validación, 6 clases: AP 0,0581. Test-dev, 6 clases: AP 0,0419 |
 
 ## Resultados Fase A (resumen)
 | Medición | Valor | Archivo |
