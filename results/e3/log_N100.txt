@@ -1,0 +1,363 @@
+[N100] cuda | train 1500 | val 548
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794337709.957885     211 cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py:2589: UserWarning: for conv1.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  module._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for bn1.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for bn1.bias: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py:2589: UserWarning: for layer1.0.conv1.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  module._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer1.0.bn1.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer1.0.bn1.bias: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py:2589: UserWarning: for layer1.0.conv2.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  module._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer1.0.bn2.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer1.0.bn2.bias: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py:2589: UserWarning: for layer1.0.conv3.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  module._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer1.0.bn3.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer1.0.bn3.bias: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py:2589: UserWarning: for layer1.0.downsample.0.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  module._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer1.0.downsample.1.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer1.0.downsample.1.bias: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py:2589: UserWarning: for layer1.1.conv1.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  module._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer1.1.bn1.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer1.1.bn1.bias: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py:2589: UserWarning: for layer1.1.conv2.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  module._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer1.1.bn2.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer1.1.bn2.bias: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py:2589: UserWarning: for layer1.1.conv3.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  module._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer1.1.bn3.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer1.1.bn3.bias: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py:2589: UserWarning: for layer1.2.conv1.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  module._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer1.2.bn1.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer1.2.bn1.bias: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py:2589: UserWarning: for layer1.2.conv2.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  module._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer1.2.bn2.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer1.2.bn2.bias: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py:2589: UserWarning: for layer1.2.conv3.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  module._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer1.2.bn3.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer1.2.bn3.bias: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py:2589: UserWarning: for layer2.0.conv1.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  module._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer2.0.bn1.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer2.0.bn1.bias: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py:2589: UserWarning: for layer2.0.conv2.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  module._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer2.0.bn2.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer2.0.bn2.bias: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py:2589: UserWarning: for layer2.0.conv3.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  module._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer2.0.bn3.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer2.0.bn3.bias: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py:2589: UserWarning: for layer2.0.downsample.0.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  module._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer2.0.downsample.1.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer2.0.downsample.1.bias: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py:2589: UserWarning: for layer2.1.conv1.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  module._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer2.1.bn1.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer2.1.bn1.bias: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py:2589: UserWarning: for layer2.1.conv2.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  module._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer2.1.bn2.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer2.1.bn2.bias: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py:2589: UserWarning: for layer2.1.conv3.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  module._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer2.1.bn3.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer2.1.bn3.bias: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py:2589: UserWarning: for layer2.2.conv1.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  module._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer2.2.bn1.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer2.2.bn1.bias: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py:2589: UserWarning: for layer2.2.conv2.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  module._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer2.2.bn2.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer2.2.bn2.bias: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py:2589: UserWarning: for layer2.2.conv3.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  module._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer2.2.bn3.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer2.2.bn3.bias: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py:2589: UserWarning: for layer2.3.conv1.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  module._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer2.3.bn1.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer2.3.bn1.bias: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py:2589: UserWarning: for layer2.3.conv2.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  module._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer2.3.bn2.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer2.3.bn2.bias: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py:2589: UserWarning: for layer2.3.conv3.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  module._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer2.3.bn3.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer2.3.bn3.bias: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py:2589: UserWarning: for layer3.0.conv1.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  module._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer3.0.bn1.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer3.0.bn1.bias: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py:2589: UserWarning: for layer3.0.conv2.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  module._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer3.0.bn2.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer3.0.bn2.bias: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py:2589: UserWarning: for layer3.0.conv3.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  module._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer3.0.bn3.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer3.0.bn3.bias: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py:2589: UserWarning: for layer3.0.downsample.0.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  module._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer3.0.downsample.1.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer3.0.downsample.1.bias: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py:2589: UserWarning: for layer3.1.conv1.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  module._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer3.1.bn1.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer3.1.bn1.bias: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py:2589: UserWarning: for layer3.1.conv2.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  module._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer3.1.bn2.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer3.1.bn2.bias: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py:2589: UserWarning: for layer3.1.conv3.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  module._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer3.1.bn3.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer3.1.bn3.bias: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py:2589: UserWarning: for layer3.2.conv1.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  module._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer3.2.bn1.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer3.2.bn1.bias: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py:2589: UserWarning: for layer3.2.conv2.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  module._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer3.2.bn2.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer3.2.bn2.bias: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py:2589: UserWarning: for layer3.2.conv3.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  module._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer3.2.bn3.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer3.2.bn3.bias: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py:2589: UserWarning: for layer3.3.conv1.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  module._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer3.3.bn1.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer3.3.bn1.bias: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py:2589: UserWarning: for layer3.3.conv2.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  module._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer3.3.bn2.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer3.3.bn2.bias: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py:2589: UserWarning: for layer3.3.conv3.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  module._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer3.3.bn3.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer3.3.bn3.bias: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py:2589: UserWarning: for layer3.4.conv1.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  module._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer3.4.bn1.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer3.4.bn1.bias: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py:2589: UserWarning: for layer3.4.conv2.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  module._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer3.4.bn2.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer3.4.bn2.bias: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py:2589: UserWarning: for layer3.4.conv3.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  module._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer3.4.bn3.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer3.4.bn3.bias: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py:2589: UserWarning: for layer3.5.conv1.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  module._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer3.5.bn1.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer3.5.bn1.bias: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py:2589: UserWarning: for layer3.5.conv2.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  module._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer3.5.bn2.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer3.5.bn2.bias: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py:2589: UserWarning: for layer3.5.conv3.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  module._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer3.5.bn3.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer3.5.bn3.bias: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py:2589: UserWarning: for layer4.0.conv1.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  module._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer4.0.bn1.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer4.0.bn1.bias: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py:2589: UserWarning: for layer4.0.conv2.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  module._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer4.0.bn2.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer4.0.bn2.bias: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py:2589: UserWarning: for layer4.0.conv3.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  module._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer4.0.bn3.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer4.0.bn3.bias: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py:2589: UserWarning: for layer4.0.downsample.0.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  module._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer4.0.downsample.1.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer4.0.downsample.1.bias: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py:2589: UserWarning: for layer4.1.conv1.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  module._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer4.1.bn1.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer4.1.bn1.bias: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py:2589: UserWarning: for layer4.1.conv2.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  module._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer4.1.bn2.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer4.1.bn2.bias: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py:2589: UserWarning: for layer4.1.conv3.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  module._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer4.1.bn3.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer4.1.bn3.bias: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py:2589: UserWarning: for layer4.2.conv1.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  module._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer4.2.bn1.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer4.2.bn1.bias: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py:2589: UserWarning: for layer4.2.conv2.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  module._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer4.2.bn2.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer4.2.bn2.bias: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py:2589: UserWarning: for layer4.2.conv3.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  module._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer4.2.bn3.weight: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+/usr/local/lib/python3.13/dist-packages/torch/nn/modules/batchnorm.py:133: UserWarning: for layer4.2.bn3.bias: copying from a non-meta parameter in the checkpoint to a meta parameter in the current model, which is a no-op. (Did you mean to pass `assign=True` to assign items in the state dictionary to their corresponding key in the module instead of copying them in place?)
+  super()._load_from_state_dict(
+Some weights of the model checkpoint at facebook/detr-resnet-50 were not used when initializing DetrForObjectDetection: ['model.backbone.conv_encoder.model.layer1.0.downsample.1.num_batches_tracked', 'model.backbone.conv_encoder.model.layer2.0.downsample.1.num_batches_tracked', 'model.backbone.conv_encoder.model.layer3.0.downsample.1.num_batches_tracked', 'model.backbone.conv_encoder.model.layer4.0.downsample.1.num_batches_tracked']
+- This IS expected if you are initializing DetrForObjectDetection from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing DetrForObjectDetection from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+[N100] zero-shot listo
+Some weights of the model checkpoint at facebook/detr-resnet-50 were not used when initializing DetrForObjectDetection: ['model.backbone.conv_encoder.model.layer1.0.downsample.1.num_batches_tracked', 'model.backbone.conv_encoder.model.layer2.0.downsample.1.num_batches_tracked', 'model.backbone.conv_encoder.model.layer3.0.downsample.1.num_batches_tracked', 'model.backbone.conv_encoder.model.layer4.0.downsample.1.num_batches_tracked']
+- This IS expected if you are initializing DetrForObjectDetection from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing DetrForObjectDetection from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+Some weights of DetrForObjectDetection were not initialized from the model checkpoint at facebook/detr-resnet-50 and are newly initialized because the shapes did not match:
+- class_labels_classifier.bias: found shape torch.Size([92]) in the checkpoint and torch.Size([11]) in the model instantiated
+- class_labels_classifier.weight: found shape torch.Size([92, 256]) in the checkpoint and torch.Size([11, 256]) in the model instantiated
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+Some weights of the model checkpoint at facebook/detr-resnet-50 were not used when initializing DetrForObjectDetection: ['model.backbone.conv_encoder.model.layer1.0.downsample.1.num_batches_tracked', 'model.backbone.conv_encoder.model.layer2.0.downsample.1.num_batches_tracked', 'model.backbone.conv_encoder.model.layer3.0.downsample.1.num_batches_tracked', 'model.backbone.conv_encoder.model.layer4.0.downsample.1.num_batches_tracked']
+- This IS expected if you are initializing DetrForObjectDetection from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing DetrForObjectDetection from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+[N100] entrenables: backbone 23.23 M, resto 18.05 M
+/kaggle/working/DETR-1INF52/notebooks/../src/train_e3.py:235: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)
+  comps[k] = comps.get(k, 0.0) + float(v)
+[N100] época 1/20: loss 3.5825 (192.8 s)
+[N100] época 2/20: loss 3.4824 (196.5 s)
+[N100] época 3/20: loss 3.3723 (197.0 s)
+[N100] época 4/20: loss 3.3424 (199.1 s)
+[N100] época 5/20: loss 3.2959 (198.4 s)
+[N100] época 6/20: loss 3.3155 (197.8 s)
+[N100] época 7/20: loss 3.3466 (196.9 s)
+[N100] época 8/20: loss 3.3306 (197.4 s)
+[N100] eval ep 8: AP 0.0137 | AP mapped6 0.0214 | AR@500 gt100 0.0161 (136 s)
+[N100] época 9/20: loss 3.2777 (202.0 s)
+[N100] época 10/20: loss 3.2297 (201.2 s)
+[N100] época 11/20: loss 3.2024 (195.8 s)
+[N100] época 12/20: loss 3.1879 (196.4 s)
+[N100] época 13/20: loss 3.2124 (196.6 s)
+[N100] época 14/20: loss 3.2509 (197.3 s)
+[N100] eval ep 14: AP 0.0086 | AP mapped6 0.0133 | AR@500 gt100 0.0131 (143 s)
+[N100] época 15/20: loss 3.0551 (194.0 s)
+[N100] época 16/20: loss 2.9480 (201.4 s)
+[N100] época 17/20: loss 2.9148 (201.6 s)
+[N100] época 18/20: loss 2.8613 (197.5 s)
+[N100] época 19/20: loss 2.8500 (197.0 s)
+[N100] época 20/20: loss 2.8341 (196.5 s)
+[N100] eval ep 20: AP 0.0235 | AP mapped6 0.0361 | AR@500 gt100 0.0327 (138 s)
+[N100] FIN en 72.9 min

@@ -1,0 +1,161 @@
+[{"stream_name":"stderr","time":8.785192403,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":8.785264802,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":8.785272794,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":8.785277342,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stderr","time":9.463241835,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":9.463303275,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":9.46331052,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":9.463314972,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stdout","time":34.733271527,"data":"\u001b[31mERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.\r\n"}
+,{"stream_name":"stdout","time":34.733309874,"data":"gradio-client 2.7.2 requires huggingface-hub\u003c3.0,\u003e=1.16.0, but you have huggingface-hub 0.36.2 which is incompatible.\r\n"}
+,{"stream_name":"stdout","time":34.733314361,"data":"gradio 6.30.0 requires huggingface-hub\u003c3.0,\u003e=1.16.0, but you have huggingface-hub 0.36.2 which is incompatible.\r\n"}
+,{"stream_name":"stdout","time":34.73333307,"data":"gradio 6.30.0 requires pillow\u003c13.0,\u003e=8.0, but you have pillow 13.0.0 which is incompatible.\r\n"}
+,{"stream_name":"stdout","time":34.733338214,"data":"diffusers 0.42.0 requires huggingface-hub\u003c3.0,\u003e=1.32.0, but you have huggingface-hub 0.36.2 which is incompatible.\u001b[0m\u001b[31m\r\n"}
+,{"stream_name":"stdout","time":44.558757488,"data":"\u001b[0mGPUs: 2 ['Tesla T4', 'Tesla T4']\n"}
+,{"stream_name":"stdout","time":55.95110557,"data":"python 3.13.16 | Linux-6.18.55+-x86_64-with-glibc2.39\n"}
+,{"stream_name":"stdout","time":55.951140323,"data":"torch 2.11.0+cu130\n"}
+,{"stream_name":"stdout","time":55.951147033,"data":"torchvision 0.26.0+cu130\n"}
+,{"stream_name":"stdout","time":55.951157422,"data":"transformers 4.57.6\n"}
+,{"stream_name":"stdout","time":55.951164222,"data":"timm 1.0.30\n"}
+,{"stream_name":"stdout","time":55.951191534,"data":"pycocotools ?\n"}
+,{"stream_name":"stdout","time":55.951197181,"data":"scipy 1.16.3\n"}
+,{"stream_name":"stdout","time":55.951202244,"data":"numpy 2.1.3\n"}
+,{"stream_name":"stdout","time":55.951207555,"data":"GPU Tesla T4 | CUDA 13.0\n"}
+,{"stream_name":"stdout","time":55.997714843,"data":"884a1dc  2026-11-10 20:16:49 -0500  Update DESIGN_LOG.md\r\n"}
+,{"stream_name":"stdout","time":56.126383667,"data":"028d3d9  2026-11-10 18:04:50 -0500  Actualizacion del E3 sobre los progresos dados\r\n"}
+,{"stream_name":"stdout","time":58.022098354,"data":"ROOT = /kaggle/input/datasets/banuprasadb/visdrone-dataset/VisDrone_Dataset\n"}
+,{"stream_name":"stdout","time":58.168875189,"data":"train_e3: 1500 imágenes, 81422 cajas, 54.3 por imagen, 156 con n \u003e 100 (10.4%), máximo 370\n"}
+,{"stream_name":"stdout","time":58.168915685,"data":"val: 548 imágenes, 38732 cajas, 70.7 por imagen, 106 con n \u003e 100 (19.3%), máximo 317\n"}
+,{"stream_name":"stdout","time":79.515887516,"data":"WARNING: All log messages before absl::InitializeLog() is called are written to STDERR\r\n"}
+,{"stream_name":"stdout","time":79.515935721,"data":"I0000 00:00:1794364061.157294      80 cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.\r\n"}
+,{"stream_name":"stdout","time":85.017332533,"data":"\rpreprocessor_config.json:   0%|                       | 0.00/290 [00:00\u003c?, ?B/s]\rpreprocessor_config.json: 100%|████████████████| 290/290 [00:00\u003c00:00, 1.76MB/s]\r\n"}
+,{"stream_name":"stdout","time":158.180373244,"data":"train: 1500 imágenes en 73 s\r\n"}
+,{"stream_name":"stdout","time":186.72122659,"data":"val: 548 imágenes en 29 s\r\n"}
+,{"stream_name":"stdout","time":192.073834859,"data":"134 s\n"}
+,{"stream_name":"stdout","time":192.102476823,"data":"5.1G\t/tmp/e3cache\r\n"}
+,{"stream_name":"stdout","time":192.247410922,"data":"               total        used        free      shared  buff/cache   available\r\n"}
+,{"stream_name":"stdout","time":192.247446185,"data":"Mem:              31           2          11           0          17          29\r\n"}
+,{"stream_name":"stdout","time":312.576376305,"data":"  2.0 min | B_amp   | [N100] entrenables: backbone 23.23 M, resto 18.05 M\n"}
+,{"stream_name":"stdout","time":312.576456948,"data":"  2.0 min | C_head  | [N100] entrenables: backbone 23.23 M, resto 18.05 M\n"}
+,{"stream_name":"stdout","time":432.577031975,"data":"  4.0 min | B_amp   | [N100] época 1/20: loss 3.5300 (182.9 s)\n"}
+,{"stream_name":"stdout","time":432.577079288,"data":"  4.0 min | C_head  | [N100] época 1/20: loss 3.4572 (208.8 s)\n"}
+,{"stream_name":"stdout","time":552.580613961,"data":"  6.0 min | B_amp   | [N100] época 1/20: loss 3.5300 (182.9 s)\n"}
+,{"stream_name":"stdout","time":552.580932293,"data":"  6.0 min | C_head  | [N100] época 1/20: loss 3.4572 (208.8 s)\n"}
+,{"stream_name":"stdout","time":672.582072844,"data":"  8.0 min | B_amp   | [N100] época 2/20: loss 3.2566 (179.7 s)\n"}
+,{"stream_name":"stdout","time":672.582124218,"data":"  8.0 min | C_head  | [N100] época 2/20: loss 3.2437 (209.3 s)\n"}
+,{"stream_name":"stdout","time":792.581069899,"data":" 10.0 min | B_amp   | [N100] época 3/20: loss 3.1816 (179.8 s)\n"}
+,{"stream_name":"stdout","time":792.58111477,"data":" 10.0 min | C_head  | [N100] época 2/20: loss 3.2437 (209.3 s)\n"}
+,{"stream_name":"stdout","time":912.584099199,"data":" 12.0 min | B_amp   | [N100] época 3/20: loss 3.1816 (179.8 s)\n"}
+,{"stream_name":"stdout","time":912.584147272,"data":" 12.0 min | C_head  | [N100] época 3/20: loss 3.1592 (209.3 s)\n"}
+,{"stream_name":"stdout","time":1032.58562197,"data":" 14.0 min | B_amp   | [N100] época 4/20: loss 3.1189 (180.2 s)\n"}
+,{"stream_name":"stdout","time":1032.585670147,"data":" 14.0 min | C_head  | [N100] época 3/20: loss 3.1592 (209.3 s)\n"}
+,{"stream_name":"stdout","time":1152.588391214,"data":" 16.0 min | B_amp   | [N100] época 5/20: loss 3.0658 (179.6 s)\n"}
+,{"stream_name":"stdout","time":1152.588432052,"data":" 16.0 min | C_head  | [N100] época 4/20: loss 3.0937 (209.8 s)\n"}
+,{"stream_name":"stdout","time":1272.5911086629999,"data":" 18.0 min | B_amp   | [N100] época 5/20: loss 3.0658 (179.6 s)\n"}
+,{"stream_name":"stdout","time":1272.591146591,"data":" 18.0 min | C_head  | [N100] época 5/20: loss 3.0564 (209.2 s)\n"}
+,{"stream_name":"stdout","time":1392.589442745,"data":" 20.0 min | B_amp   | [N100] época 6/20: loss 3.0518 (179.6 s)\n"}
+,{"stream_name":"stdout","time":1392.589495815,"data":" 20.0 min | C_head  | [N100] época 5/20: loss 3.0564 (209.2 s)\n"}
+,{"stream_name":"stdout","time":1512.590021504,"data":" 22.0 min | B_amp   | [N100] época 7/20: loss 3.0073 (179.7 s)\n"}
+,{"stream_name":"stdout","time":1512.590080419,"data":" 22.0 min | C_head  | [N100] época 6/20: loss 3.0251 (209.3 s)\n"}
+,{"stream_name":"stdout","time":1632.591844713,"data":" 24.0 min | B_amp   | [N100] época 7/20: loss 3.0073 (179.7 s)\n"}
+,{"stream_name":"stdout","time":1632.591893564,"data":" 24.0 min | C_head  | [N100] época 6/20: loss 3.0251 (209.3 s)\n"}
+,{"stream_name":"stdout","time":1752.592032882,"data":" 26.0 min | B_amp   | [N100] época 8/20: loss 2.9887 (180.9 s)\n"}
+,{"stream_name":"stdout","time":1752.59208979,"data":" 26.0 min | C_head  | [N100] época 7/20: loss 2.9717 (208.6 s)\n"}
+,{"stream_name":"stdout","time":1872.594282656,"data":" 28.0 min | B_amp   | [N100] eval ep 8: AP 0.0356 | AP mapped6 0.0593 | AR@500 gt100 0.0403 (156 s)\n"}
+,{"stream_name":"stdout","time":1872.594338534,"data":" 28.0 min | C_head  | [N100] época 7/20: loss 2.9717 (208.6 s)\n"}
+,{"stream_name":"stdout","time":1992.595540362,"data":" 30.0 min | B_amp   | [N100] época 9/20: loss 2.9490 (175.2 s)\n"}
+,{"stream_name":"stdout","time":1992.595588233,"data":" 30.0 min | C_head  | [N100] época 8/20: loss 2.9367 (206.3 s)\n"}
+,{"stream_name":"stdout","time":2112.596656116,"data":" 32.0 min | B_amp   | [N100] época 9/20: loss 2.9490 (175.2 s)\n"}
+,{"stream_name":"stdout","time":2112.596700819,"data":" 32.0 min | C_head  | [N100] eval ep 8: AP 0.0322 | AP mapped6 0.0518 | AR@500 gt100 0.0393 (157 s)\n"}
+,{"stream_name":"stdout","time":2232.596066675,"data":" 34.0 min | B_amp   | [N100] época 10/20: loss 2.9341 (176.2 s)\n"}
+,{"stream_name":"stdout","time":2232.596123512,"data":" 34.0 min | C_head  | [N100] eval ep 8: AP 0.0322 | AP mapped6 0.0518 | AR@500 gt100 0.0393 (157 s)\n"}
+,{"stream_name":"stdout","time":2352.600000381,"data":" 36.0 min | B_amp   | [N100] época 11/20: loss 2.8989 (176.1 s)\n"}
+,{"stream_name":"stdout","time":2352.600108691,"data":" 36.0 min | C_head  | [N100] época 9/20: loss 2.9202 (208.4 s)\n"}
+,{"stream_name":"stdout","time":2472.599811539,"data":" 38.0 min | B_amp   | [N100] época 11/20: loss 2.8989 (176.1 s)\n"}
+,{"stream_name":"stdout","time":2472.59987097,"data":" 38.0 min | C_head  | [N100] época 10/20: loss 2.9024 (208.6 s)\n"}
+,{"stream_name":"stdout","time":2592.601410098,"data":" 40.0 min | B_amp   | [N100] época 12/20: loss 2.9015 (176.4 s)\n"}
+,{"stream_name":"stdout","time":2592.601484685,"data":" 40.0 min | C_head  | [N100] época 10/20: loss 2.9024 (208.6 s)\n"}
+,{"stream_name":"stdout","time":2712.603088652,"data":" 42.0 min | B_amp   | [N100] época 13/20: loss 2.8843 (177.4 s)\n"}
+,{"stream_name":"stdout","time":2712.603124876,"data":" 42.0 min | C_head  | [N100] época 11/20: loss 2.8696 (207.5 s)\n"}
+,{"stream_name":"stdout","time":2832.602834684,"data":" 44.0 min | B_amp   | [N100] época 13/20: loss 2.8843 (177.4 s)\n"}
+,{"stream_name":"stdout","time":2832.602887326,"data":" 44.0 min | C_head  | [N100] época 11/20: loss 2.8696 (207.5 s)\n"}
+,{"stream_name":"stdout","time":2952.606134318,"data":" 46.0 min | B_amp   | [N100] época 14/20: loss 2.8456 (178.2 s)\n"}
+,{"stream_name":"stdout","time":2952.606195879,"data":" 46.0 min | C_head  | [N100] época 12/20: loss 2.8851 (208.3 s)\n"}
+,{"stream_name":"stdout","time":3072.607096674,"data":" 48.0 min | B_amp   | [N100] eval ep 14: AP 0.0360 | AP mapped6 0.0596 | AR@500 gt100 0.0435 (154 s)\n"}
+,{"stream_name":"stdout","time":3072.607168114,"data":" 48.0 min | C_head  | [N100] época 12/20: loss 2.8851 (208.3 s)\n"}
+,{"stream_name":"stdout","time":3192.608344089,"data":" 50.0 min | B_amp   | [N100] eval ep 14: AP 0.0360 | AP mapped6 0.0596 | AR@500 gt100 0.0435 (154 s)\n"}
+,{"stream_name":"stdout","time":3192.608387135,"data":" 50.0 min | C_head  | [N100] época 13/20: loss 2.8523 (207.2 s)\n"}
+,{"stream_name":"stdout","time":3312.609534627,"data":" 52.0 min | B_amp   | [N100] época 15/20: loss 2.7858 (176.5 s)\n"}
+,{"stream_name":"stdout","time":3312.609571404,"data":" 52.0 min | C_head  | [N100] época 14/20: loss 2.8241 (208.8 s)\n"}
+,{"stream_name":"stdout","time":3432.610814996,"data":" 54.0 min | B_amp   | [N100] época 16/20: loss 2.7777 (175.6 s)\n"}
+,{"stream_name":"stdout","time":3432.610884624,"data":" 54.0 min | C_head  | [N100] época 14/20: loss 2.8241 (208.8 s)\n"}
+,{"stream_name":"stdout","time":3552.612187413,"data":" 56.0 min | B_amp   | [N100] época 17/20: loss 2.7831 (175.0 s)\n"}
+,{"stream_name":"stdout","time":3552.61225633,"data":" 56.0 min | C_head  | [N100] eval ep 14: AP 0.0369 | AP mapped6 0.0572 | AR@500 gt100 0.0458 (157 s)\n"}
+,{"stream_name":"stdout","time":3672.614640119,"data":" 58.0 min | B_amp   | [N100] época 17/20: loss 2.7831 (175.0 s)\n"}
+,{"stream_name":"stdout","time":3672.614708403,"data":" 58.0 min | C_head  | [N100] época 15/20: loss 2.7641 (208.3 s)\n"}
+,{"stream_name":"stdout","time":3792.614666201,"data":" 60.0 min | B_amp   | [N100] época 18/20: loss 2.7579 (177.0 s)\n"}
+,{"stream_name":"stdout","time":3792.614706112,"data":" 60.0 min | C_head  | [N100] época 15/20: loss 2.7641 (208.3 s)\n"}
+,{"stream_name":"stdout","time":3912.616422535,"data":" 62.0 min | B_amp   | [N100] época 19/20: loss 2.7647 (177.9 s)\n"}
+,{"stream_name":"stdout","time":3912.616461235,"data":" 62.0 min | C_head  | [N100] época 16/20: loss 2.7491 (208.8 s)\n"}
+,{"stream_name":"stdout","time":4032.621913198,"data":" 64.0 min | B_amp   | [N100] época 19/20: loss 2.7647 (177.9 s)\n"}
+,{"stream_name":"stdout","time":4032.621963693,"data":" 64.0 min | C_head  | [N100] época 16/20: loss 2.7491 (208.8 s)\n"}
+,{"stream_name":"stdout","time":4152.621509606,"data":" 66.0 min | B_amp   | [N100] época 20/20: loss 2.7626 (177.4 s)\n"}
+,{"stream_name":"stdout","time":4152.621550734,"data":" 66.0 min | C_head  | [N100] época 17/20: loss 2.7589 (208.2 s)\n"}
+,{"stream_name":"stdout","time":4272.621662782,"data":" 68.0 min | B_amp   | [N100] FIN en 67.1 min\n"}
+,{"stream_name":"stdout","time":4272.621707092,"data":" 68.0 min | C_head  | [N100] época 17/20: loss 2.7589 (208.2 s)\n"}
+,{"stream_name":"stdout","time":4392.625917637,"data":" 70.0 min | B_amp   | [N100] FIN en 67.1 min\n"}
+,{"stream_name":"stdout","time":4392.625977228,"data":" 70.0 min | C_head  | [N100] época 18/20: loss 2.7349 (205.1 s)\n"}
+,{"stream_name":"stdout","time":4512.622240418,"data":" 72.0 min | B_amp   | [N100] FIN en 67.1 min\n"}
+,{"stream_name":"stdout","time":4512.622283607,"data":" 72.0 min | C_head  | [N100] época 19/20: loss 2.7425 (203.9 s)\n"}
+,{"stream_name":"stdout","time":4632.623566803,"data":" 74.0 min | B_amp   | [N100] FIN en 67.1 min\n"}
+,{"stream_name":"stdout","time":4632.623610569,"data":" 74.0 min | C_head  | [N100] época 19/20: loss 2.7425 (203.9 s)\n"}
+,{"stream_name":"stdout","time":4752.625231873,"data":" 76.0 min | B_amp   | [N100] FIN en 67.1 min\n"}
+,{"stream_name":"stdout","time":4752.625275782,"data":" 76.0 min | C_head  | [N100] época 20/20: loss 2.7267 (203.9 s)\n"}
+,{"stream_name":"stdout","time":4872.427273292,"data":" 78.0 min | B_amp   | [N100] FIN en 67.1 min\n"}
+,{"stream_name":"stdout","time":4872.427320426,"data":" 78.0 min | C_head  | [N100] FIN en 76.9 min\n"}
+,{"stream_name":"stdout","time":4872.427328017,"data":"B_amp: código de salida 0\n"}
+,{"stream_name":"stdout","time":4872.427334329,"data":"C_head: código de salida 0\n"}
+,{"stream_name":"stdout","time":4872.491378512,"data":"6 clases mapeadas, época 20\n"}
+,{"stream_name":"stdout","time":4872.491453515,"data":"                          AP    AP50    AP_S    AP_M  AR@100  AR@500  AR_S@500\n"}
+,{"stream_name":"stdout","time":4872.491462551,"data":"zero-shot             0.0606  0.1156  0.0104  0.0863  0.1068  0.1068    0.0303\n"}
+,{"stream_name":"stdout","time":4872.491484055,"data":"B (referencia, fp32)  0.0590  0.1261  0.0119  0.0914  0.1061  0.1061    0.0354\n"}
+,{"stream_name":"stdout","time":4872.491488526,"data":"B_amp                 0.0635  0.1376  0.0122  0.1007  0.1108  0.1108    0.0360\n"}
+,{"stream_name":"stdout","time":4872.491495099,"data":"C_head                0.0626  0.1360  0.0115  0.1025  0.1074  0.1074    0.0322\n"}
+,{"stream_name":"stdout","time":4872.491499213,"data":"\n"}
+,{"stream_name":"stdout","time":4872.491502972,"data":"Tiempo medio por época (H7)\n"}
+,{"stream_name":"stdout","time":4872.491507161,"data":"  B (referencia, fp32)    199.7 s   (0.0 % menos que B)\n"}
+,{"stream_name":"stdout","time":4872.491516153,"data":"  B_amp                   178.1 s   (10.8 % menos que B)\n"}
+,{"stream_name":"stdout","time":4872.491519216,"data":"  C_head                  207.9 s   (-4.1 % menos que B)\n"}
+,{"stream_name":"stdout","time":4872.491522383,"data":"\n"}
+,{"stream_name":"stdout","time":4872.491542058,"data":"AP por clase, 10 clases (H4 y H8: AP \u003e 0 en las 10)\n"}
+,{"stream_name":"stdout","time":4872.491547465,"data":"                 B (referencia, fp32)   B_amp  C_head\n"}
+,{"stream_name":"stdout","time":4872.491552098,"data":"pedestrian                     0.0198  0.0214  0.0234\n"}
+,{"stream_name":"stdout","time":4872.491556288,"data":"people                         0.0052  0.0045  0.0087\n"}
+,{"stream_name":"stdout","time":4872.491560822,"data":"bicycle                        0.0093  0.0112  0.0105\n"}
+,{"stream_name":"stdout","time":4872.491564847,"data":"car                            0.1571  0.1655  0.1673\n"}
+,{"stream_name":"stdout","time":4872.491568505,"data":"van                            0.0000  0.0000  0.0120\n"}
+,{"stream_name":"stdout","time":4872.491572084,"data":"truck                          0.0519  0.0604  0.0502\n"}
+,{"stream_name":"stdout","time":4872.491575607,"data":"tricycle                       0.0000  0.0000  0.0034\n"}
+,{"stream_name":"stdout","time":4872.491579443,"data":"awning-tricycle                0.0000  0.0000  0.0059\n"}
+,{"stream_name":"stdout","time":4872.491583399,"data":"bus                            0.0933  0.1010  0.1043\n"}
+,{"stream_name":"stdout","time":4872.491587403,"data":"motor                          0.0223  0.0213  0.0197\n"}
+,{"stream_name":"stdout","time":4872.515021938,"data":"| E4-B_amp | 2026-11-10 | 100 | T4 | 67,1 | 2,7626 | 0,068 | 0,049 | 0,039 | D23 + --amp (H7). 6 clases: AP 0,063 |\n"}
+,{"stream_name":"stdout","time":4872.515064836,"data":"| E4-C_head | 2026-11-10 | 100 | T4 | 76,9 | 2,7267 | 0,071 | 0,048 | 0,041 | D23 + D25, lr_head 1e-4 (H8). 6 clases: AP 0,063 |\n"}
+,{"stream_name":"stdout","time":4874.46729843,"data":"-rw-r--r-- 1 root root 9.0M Nov 11 03:47 /kaggle/working/resultados_e4.zip\r\n"}
+,{"stream_name":"stdout","time":4874.629387392,"data":"['/kaggle/input/datasets/banuprasadb/visdrone-dataset/VisDrone_Dataset/VisDrone2019-DET-test-challenge', '/kaggle/input/datasets/banuprasadb/visdrone-dataset/VisDrone_Dataset/VisDrone2019-DET-test-dev']\n"}
+,{"stream_name":"stdout","time":4874.680119894,"data":"images\tlabels\r\n"}
+,{"stream_name":"stdout","time":4874.81547371,"data":"1610\r\n"}
+,{"stream_name":"stdout","time":4874.950874208,"data":"1610\r\n"}
+,{"stream_name":"stdout","time":4875.587722745,"data":"ls: write error: Broken pipe\r\n"}
+,{"stream_name":"stdout","time":4875.633811817,"data":"3 0.544118 0.647712 0.080882 0.084967\r\n"}
+,{"stream_name":"stdout","time":4875.633856996,"data":"3 0.438235 0.453595 0.026471 0.049673\r\n"}
+,{"stream_name":"stdout","time":4875.633863484,"data":"3 0.467647 0.456209 0.027941 0.057516\r\n"}
+,{"stream_name":"stderr","time":4880.879969191,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":4880.8800412,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":4881.100751575,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":4881.10077957,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":4882.012336852,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to notebook\n"}
+,{"stream_name":"stderr","time":4882.111853981,"data":"[NbConvertApp] Writing 26452 bytes to __notebook__.ipynb\n"}
+,{"stream_name":"stderr","time":4885.072517505,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to html\n"}
+,{"stream_name":"stderr","time":4885.709397419,"data":"[NbConvertApp] Writing 328306 bytes to __results__.html\n"}
+]

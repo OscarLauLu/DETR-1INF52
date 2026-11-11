@@ -1,0 +1,40 @@
+[N100] cuda | train 1500 | val 548
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794373012.018596     925 cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+Some weights of the model checkpoint at facebook/detr-resnet-50 were not used when initializing DetrForObjectDetection: ['model.backbone.conv_encoder.model.layer1.0.downsample.1.num_batches_tracked', 'model.backbone.conv_encoder.model.layer2.0.downsample.1.num_batches_tracked', 'model.backbone.conv_encoder.model.layer3.0.downsample.1.num_batches_tracked', 'model.backbone.conv_encoder.model.layer4.0.downsample.1.num_batches_tracked']
+- This IS expected if you are initializing DetrForObjectDetection from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing DetrForObjectDetection from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+Some weights of DetrForObjectDetection were not initialized from the model checkpoint at facebook/detr-resnet-50 and are newly initialized because the shapes did not match:
+- class_labels_classifier.bias: found shape torch.Size([92]) in the checkpoint and torch.Size([11]) in the model instantiated
+- class_labels_classifier.weight: found shape torch.Size([92, 256]) in the checkpoint and torch.Size([11, 256]) in the model instantiated
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+Some weights of the model checkpoint at facebook/detr-resnet-50 were not used when initializing DetrForObjectDetection: ['model.backbone.conv_encoder.model.layer1.0.downsample.1.num_batches_tracked', 'model.backbone.conv_encoder.model.layer2.0.downsample.1.num_batches_tracked', 'model.backbone.conv_encoder.model.layer3.0.downsample.1.num_batches_tracked', 'model.backbone.conv_encoder.model.layer4.0.downsample.1.num_batches_tracked']
+- This IS expected if you are initializing DetrForObjectDetection from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing DetrForObjectDetection from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+[N100] entrenables: backbone 23.23 M, resto 18.05 M
+/kaggle/working/DETR-1INF52/notebooks/../src/train_e3.py:267: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)
+  comps[k] = comps.get(k, 0.0) + float(v)
+[N100] época 1/20: loss 3.4807 (165.2 s)
+[N100] época 2/20: loss 3.2458 (166.4 s)
+[N100] época 3/20: loss 3.1626 (165.6 s)
+[N100] época 4/20: loss 3.1007 (166.2 s)
+[N100] época 5/20: loss 3.0605 (165.6 s)
+[N100] época 6/20: loss 3.0139 (165.1 s)
+[N100] época 7/20: loss 2.9785 (165.7 s)
+[N100] época 8/20: loss 2.9686 (165.4 s)
+[N100] época 9/20: loss 2.9252 (167.2 s)
+[N100] época 10/20: loss 2.8955 (172.5 s)
+[N100] época 11/20: loss 2.8930 (172.4 s)
+[N100] época 12/20: loss 2.8578 (171.6 s)
+[N100] época 13/20: loss 2.8288 (170.1 s)
+[N100] época 14/20: loss 2.8198 (170.8 s)
+[N100] época 15/20: loss 2.7868 (171.4 s)
+[N100] época 16/20: loss 2.7552 (170.6 s)
+[N100] época 17/20: loss 2.7433 (169.5 s)
+[N100] época 18/20: loss 2.7345 (169.4 s)
+[N100] época 19/20: loss 2.7289 (170.1 s)
+[N100] época 20/20: loss 2.7164 (169.8 s)
+[N100] eval ep 20: AP 0.0399 | AP mapped6 0.0612 | AR@500 gt100 0.0496 (133 s)
+[N100] test-dev: AP 0.0321 | AP mapped6 0.0501 (343 s)
+[N100] FIN en 58.4 min
