@@ -49,7 +49,12 @@ def prep(args):
     from common import CocoDetrDataset
     processor = DetrImageProcessor.from_pretrained(args.ckpt, size={'shortest_edge': SHORT, 'longest_edge': LONG})
     os.makedirs(args.cache, exist_ok=True)
-    for split, img_dir, ann in (('train', args.train_img, args.train_json), ('val', args.val_img, args.val_json)):
+    splits = [('train', args.train_img, args.train_json), ('val', args.val_img, args.val_json)]
+    if args.test_img:                                     # D27: test-dev, solo para la evaluación final
+        splits.append(('test', args.test_img, args.test_json))
+    for split, img_dir, ann in splits:
+        if os.path.exists(f'{args.cache}/{split}_labels.pt'):
+            print(f'{split}: ya está en la caché'); continue
         t = time.time()
         ds = CocoDetrDataset(img_dir, ann, processor)
         n = len(ds)
@@ -187,6 +192,17 @@ def full_eval(val_json, dets, groups, cat_ids=None):
     return res
 
 
+def save_dets(dets, path):
+    """Detecciones en JSON comprimido (D27), con la caja redondeada a 0,01 px y el score a 1e-5.
+    Solo se guardan los 4 campos de COCO: pycocotools agrega 'segmentation', 'area', 'id' e 'iscrowd'
+    a cada detección al evaluar. Las métricas ya se calcularon con los valores sin redondear."""
+    import gzip
+    r = [{'image_id': d['image_id'], 'category_id': d['category_id'], 'score': round(d['score'], 5),
+          'bbox': [round(v, 2) for v in d['bbox']]} for d in dets]
+    with gzip.open(path, 'wt') as fh:
+        json.dump(r, fh)
+
+
 # ============================================================================ entrenamiento
 def train(args):
     import torch
@@ -206,10 +222,17 @@ def train(args):
                     max_imgs=args.max_val)
         json.dump(full_eval(args.val_json, d, groups, cat_ids=sorted(set(COCO_TO_VISDRONE.values()))),
                   open(f'{args.out}/zero_shot.json', 'w'))
+        if args.test_json:                               # D27: el mismo zero-shot en test-dev
+            test = Cached(args.cache, 'test'); tgroups, _ = density_groups(args.test_json)
+            d = predict(zs, test, args.test_json, device, label_offset=0, label_map=COCO_TO_VISDRONE,
+                        max_imgs=args.max_val)
+            json.dump(full_eval(args.test_json, d, tgroups, cat_ids=sorted(set(COCO_TO_VISDRONE.values()))),
+                      open(f'{args.out}/zero_shot_test.json', 'w'))
         del zs; torch.cuda.empty_cache()
         print(f'[{tag}] zero-shot listo', flush=True)
 
-    model = build_model_e3(args.N, ckpt=args.ckpt, init_from_coco=not args.no_coco_head).to(device)
+    model = build_model_e3(args.N, ckpt=args.ckpt, seed=args.seed,             # D27: con 42, igual que antes
+                           init_from_coco=not args.no_coco_head).to(device)
     groups_opt, n_bb, n_rest = param_groups(model, args.lr, args.lr_backbone, args.wd, args.lr_head)
     opt = torch.optim.AdamW(groups_opt)
     sched = torch.optim.lr_scheduler.StepLR(opt, step_size=args.lr_drop, gamma=0.1)
@@ -255,9 +278,20 @@ def train(args):
             print(f'[{tag}] eval ep {ep}: AP {ev["overall"]["AP"]:.4f} | AP mapped6 {ev["mapped6"]["AP"]:.4f}'
                   f' | AR@500 gt100 {ev["gt100"]["AR@500"]:.4f} ({time.time() - t1:.0f} s)', flush=True)
             if ep == args.epochs:
-                json.dump(dets, open(f'{args.out}/dets_{tag}.json', 'w'))
+                save_dets(dets, f'{args.out}/dets_{tag}.json.gz')
         log['minutos'] = round((time.time() - t_start) / 60, 1)
         json.dump(log, open(res_path, 'w'))             # se guarda en cada época: resultados parciales
+    if args.save_model:
+        torch.save(model.state_dict(), f'{args.out}/model_{tag}.pt')
+    if args.test_json:                                   # D27: una sola evaluación, al final del entrenamiento
+        t1 = time.time()
+        test = Cached(args.cache, 'test'); tgroups, _ = density_groups(args.test_json)
+        dets = predict(model, test, args.test_json, device, max_imgs=args.max_val)
+        log['test'] = full_eval(args.test_json, dets, tgroups)
+        save_dets(dets, f'{args.out}/dets_test_{tag}.json.gz')
+        json.dump(log, open(res_path, 'w'))
+        print(f'[{tag}] test-dev: AP {log["test"]["overall"]["AP"]:.4f} | AP mapped6 '
+              f'{log["test"]["mapped6"]["AP"]:.4f} ({time.time() - t1:.0f} s)', flush=True)
     print(f'[{tag}] FIN en {log["minutos"]} min', flush=True)
 
 
@@ -267,6 +301,7 @@ if __name__ == '__main__':
     ap.add_argument('--ckpt', default=CKPT)
     ap.add_argument('--train_img'); ap.add_argument('--train_json')
     ap.add_argument('--val_img'); ap.add_argument('--val_json')
+    ap.add_argument('--test_img'); ap.add_argument('--test_json')   # D27: test-dev
     ap.add_argument('--cache', default='/tmp/e3cache')
     ap.add_argument('--out', default='../results/e3')
     ap.add_argument('--N', type=int, default=100)
@@ -283,6 +318,7 @@ if __name__ == '__main__':
     ap.add_argument('--no_coco_head', action='store_true')
     ap.add_argument('--lr_head', type=float, default=None)   # D25: lr propio de la cabeza de clases
     ap.add_argument('--amp', action='store_true')            # D24: precisión mixta fp16 en el entrenamiento
+    ap.add_argument('--save_model', action='store_true')     # guarda los pesos finales (.pt, fuera de git)
     ap.add_argument('--max_iters', type=int, default=0)      # solo para pruebas
     ap.add_argument('--max_val', type=int, default=None)     # solo para pruebas
     a = ap.parse_args()
